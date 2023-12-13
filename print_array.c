@@ -21,13 +21,9 @@ void print_array(const int *array, size_t size)
 	}
 	printf("\n");
 }
-<<<<<<< HEAD
-
 void swap(int *a, int *b)
 {
-  int temp = *a;
-  *a = *b;
-  *b = temp;
+	int temp = *a;
+	*a = *b;
+	*b = temp;
 }
-=======
->>>>>>> 266e99bf2b10c51203a3ba23c1b9e7b188bbe730
