@@ -5,52 +5,64 @@
  * @array: to be sorted
  * @size: size of array
  */
+void counting_sort(int *array, size_t size);
 
 void counting_sort(int *array, size_t size)
 {
-    if (array == NULL, size <= 1)
-        return;
+	size_t i;
+	int k;
+	int *count;
+	int *tmp;
 
-    int k = array[0];
-    size_t i;
-    for (i = 1; i < size; i++)
-    {
-        if (array[i] > k)
-            k = array[i];
-    }
+	if (array == NULL || size <= 1)
+		return;
 
-    int *count = malloc((k + 1) * sizeof(int));
-    if (count == NULL)
-        return;
+	k = array[0];
 
-    for (i = 0, i <= k, i++)
-    {
-        count[i] = 0;
-    }
+	for (i = 1; i < size; i++)
+	{
+		if (array[i] > k)
+			k = array[i];
+	}
 
-    int i;
-    for (i = 0, i < size, i++)
-    {
-        count[array[i]]++;
-    }
+	count = (int *)malloc((k + 1) * sizeof(int));
 
-    for (i = 1, i <= k, i++)
-    {
-        count[i] += count[i - 1];
-    }
+	if (count == NULL)
+		return;
 
-    int *tmp = malloc(size * sizeof(int));
-    if (tmp == NULL)
-    {
-        free(count);
-        return;
-    }
+	for (i = 0; i <= (size_t)k; i++)
+	{
+		count[i] = 0;
+	}
 
-    for (i = 0; i < size; i++)
-    {
-        array[i] = tmp[i];
-    }
+	for (i = 0; i < size; i++)
+	{
+		count[array[i]]++;
+	}
 
-    free(count);
-    free(tmp);
+	for (i = 1; i <= (size_t)k; i++)
+	{
+		count[i] += count[i - 1];
+	}
+
+	tmp = (int *)malloc(size * sizeof(int));
+
+	if (tmp == NULL)
+	{
+		free(count);
+		return;
+	}
+
+	for (i = size - 1; i > 0; i--)
+	{
+		tmp[--count[array[i]]] = array[i];
+	}
+
+	for (i = 0; i < size; i++)
+	{
+		array[i] = tmp[i];
+	}
+
+	free(count);
+	free(tmp);
 }

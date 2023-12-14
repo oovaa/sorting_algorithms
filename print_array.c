@@ -21,6 +21,13 @@ void print_array(const int *array, size_t size)
 	}
 	printf("\n");
 }
+
+/**
+ * swap - function to swap values
+ * @a: ptr to val 1
+ * @b: ptr to val 2
+ */
+
 void swap(int *a, int *b)
 {
 	int temp = *a;
