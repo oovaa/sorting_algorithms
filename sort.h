@@ -39,4 +39,6 @@ void shell_sort(int *array, size_t size);
 
 void counting_sort(int *array, size_t size);
 
+void cocktailShakerSort(int arr[], int n);
+
 #endif
