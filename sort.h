@@ -44,4 +44,13 @@ void cocktail_sort_list(listint_t **list);
 
 void merge_sort(int *array, size_t size);
 
+/*Heap sort*/
+void swap2(int *array, size_t size, int *a, int *b);
+
+void siftdown(int *array, size_t start, size_t end, size_t size);
+
+void heapify(int *array, size_t size);
+
+void heap_sort(int *array, size_t size);
+
 #endif
