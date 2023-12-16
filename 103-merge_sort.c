@@ -17,11 +17,13 @@ void merge(int *arr, int l, int m, int r)
 	int *L = (int *)malloc(n1 * sizeof(int));
 	int *R = (int *)malloc(n2 * sizeof(int));
 
-	printf("Merging...\n[left]: ");
-	print_array(arr + l, m - l);
 
-	printf("[right]: ");
-	print_array(arr + m, r - m);
+		printf("Merging...\n");
+		printf("[left]: ");
+		print_array(arr + l, n1);
+
+		printf("[right]: ");
+		print_array(arr + m + 1, n2);
 
 	for (i = 0; i < n1; i++)
 		L[i] = arr[l + i];
@@ -56,7 +58,7 @@ void merge(int *arr, int l, int m, int r)
 	}
 
 	printf("[Done]: ");
-	print_array(arr + l, r - l);
+	print_array(arr + l, r - l + 1);
 
 	free(L);
 	free(R);
