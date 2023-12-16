@@ -10,18 +10,33 @@
  * Return: Index of the pivot element after partitioning
  */
 
-int partition(int *array, size_t start, size_t end)
+int partition(int *array, size_t start, size_t end, size_t size)
 {
 	int pivot = array[end];
-	int i = start - 1, j;
+	size_t i = start - 1, j;
 
-	for (j = start; j < (int)end; j++)
+	for (j = start; j < end; j++)
+	{
 		if (array[j] < pivot)
-			swap(&array[++i], &array[j]);
+		{
+			i++;
+			if (i != j)
+			{
+				swap(&array[i], &array[j]);
+				print_array(array, size);
+			}
+		}
+	}
 
-	print_array(array, end);
-	swap(&array[++i], &array[end]);
+	i++;
+	if (i != end)
+	{
+		swap(&array[i], &array[end]);
+		print_array(array, size);
+	}
+
 	return (i);
+
 }
 
 
@@ -32,17 +47,17 @@ int partition(int *array, size_t start, size_t end)
  * @end: Ending index of the array or subarray
  */
 
-void quick_rec(int *array, int start, int end)
+void quick_rec(int *array, int start, int end, size_t size)
 {
 	int pivot;
 
 	if (start >= end)
 		return;
 
-	pivot = partition(array, start, end);
+	pivot = partition(array, start, end, size);
 
-	quick_rec(array, start, pivot - 1);
-	quick_rec(array, pivot + 1, end);
+	quick_rec(array, start, pivot - 1, size);
+	quick_rec(array, pivot + 1, end, size);
 }
 
 /**
@@ -53,5 +68,8 @@ void quick_rec(int *array, int start, int end)
 
 void quick_sort(int *array, size_t size)
 {
-	 quick_rec(array, 0, (int)size - 1);
+	if (array == NULL || size < 2)
+	return;
+
+	 quick_rec(array, 0, (int)size - 1, size);
 }
