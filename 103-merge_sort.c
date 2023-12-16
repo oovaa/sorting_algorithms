@@ -69,13 +69,14 @@ void merge_rec(int *arr, unsigned int left, unsigned int right)
 		merge_rec(arr, left, middle);
 		merge_rec(arr, middle + 1, right);
 
+		printf("Merging...\n");
+		
 		printf("[left]: ");
 		print_array(arr + left, middle - left + 1);
 
 		printf("[right]: ");
 		print_array(arr + middle + 1, right - middle);
 
-		printf("Merging...\n");
 		merge(arr, left, middle, right);
 
 		printf("[Done]: ");
