@@ -36,15 +36,13 @@ void shell_sort(int *array, size_t size)
 
 	while (gap > 0)
 	{
-		for (a = 0; a < size - gap; a++)
+		for (a = 0; a < size; a++)
 		{
-			b = a + gap;
-			while (b >= gap && array[b - gap] > array[b])
+			for (b = a; b < size && b >= gap && array[b - gap] > array[b]; b -= gap)
 			{
 				tmp = array[b - gap];
 				array[b - gap] = array[b];
 				array[b] = tmp;
-				b -= gap;
 			}
 		}
 		print_array(array, size);
