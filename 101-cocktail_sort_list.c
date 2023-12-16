@@ -2,34 +2,16 @@
 #include <stdio.h>
 
 /**
- * cocktailShakerSort - Performs Cocktail Shaker Sort on an array.
- * @arr: array to sort
- * @n: size of the array to sort
+ * cocktail_sort_list - Performs Cocktail Shaker Sort on a list.
+ * @list: list to sort
  */
 
-void cocktailShakerSort(int arr[], int n)
+void cocktail_sort_list(listint_t **list)
 {
-	int i, swapped = 1, start = 0, end = n - 1;
 
-	while (swapped)
-	{
-		swapped = 0;
-		for (i = start; i < end; i++)
-			if (arr[i] > arr[i + 1])
-			{
-				swapped = 1;
-				swap(&arr[i], &arr[i + 1]);
-			}
-		end--;
-		if (!swapped)
-			break;
+	int swapped = 1;
+	listint_t *tmp;
 
-		for (i = end; i >= start; i--)
-			if (arr[i] < arr[i - 1])
-			{
-				swapped = 1;
-				swap(&arr[i], &arr[i - 1]);
-			}
-		start++;
-	}
+
+
 }
