@@ -68,8 +68,18 @@ void merge_rec(int *arr, unsigned int left, unsigned int right)
 
 		merge_rec(arr, left, middle);
 		merge_rec(arr, middle + 1, right);
+	
+		printf("[left]: ");
+		print_array(arr + left, middle - left + 1);
 
+		printf("[right]: ");
+		print_array(arr + middle + 1, right - middle);
+
+		printf("Merging...\n");
 		merge(arr, left, middle, right);
+
+		printf("[Done]: ");
+		print_array(arr + left, right - left + 1);
 	}
 }
 
@@ -80,4 +90,6 @@ void merge_rec(int *arr, unsigned int left, unsigned int right)
  * @size: Size of the array.
  */
 void merge_sort(int *array, size_t size)
-{ merge_rec(array, 0, (int)size - 1); }
+{
+	 merge_rec(array, 0, (int)size - 1);
+}
