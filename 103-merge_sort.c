@@ -17,6 +17,12 @@ void merge(int *arr, int l, int m, int r)
 	int *L = (int *)malloc(n1 * sizeof(int));
 	int *R = (int *)malloc(n2 * sizeof(int));
 
+	printf("Merging...\n[left]: ");
+	print_array(arr + l, m - l);
+
+	printf("[right]: ");
+	print_array(arr + m, r - m);
+
 	for (i = 0; i < n1; i++)
 		L[i] = arr[l + i];
 	for (j = 0; j < n2; j++)
@@ -48,6 +54,10 @@ void merge(int *arr, int l, int m, int r)
 		j++;
 		k++;
 	}
+
+	printf("[Done]: ");
+	print_array(arr + l, r - l);
+
 	free(L);
 	free(R);
 }
@@ -69,18 +79,7 @@ void merge_rec(int *arr, unsigned int left, unsigned int right)
 		merge_rec(arr, left, middle);
 		merge_rec(arr, middle + 1, right);
 
-		printf("Merging...\n");
-		
-		printf("[left]: ");
-		print_array(arr + left, middle - left + 1);
-
-		printf("[right]: ");
-		print_array(arr + middle + 1, right - middle);
-
 		merge(arr, left, middle, right);
-
-		printf("[Done]: ");
-		print_array(arr + left, right - left + 1);
 	}
 }
 
