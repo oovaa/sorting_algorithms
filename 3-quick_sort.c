@@ -6,6 +6,7 @@
  * @array: Array to be sorted
  * @start: Starting index of the array or subarray
  * @end: Ending index of the array or subarray
+ * @size: the size of the array
  *
  * Return: Index of the pivot element after partitioning
  */
@@ -45,6 +46,7 @@ int partition(int *array, size_t start, size_t end, size_t size)
  * @array: Array to be sorted
  * @start: Starting index of the array or subarray
  * @end: Ending index of the array or subarray
+ * @size: the size of the array
  */
 
 void quick_rec(int *array, int start, int end, size_t size)
