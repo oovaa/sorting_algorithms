@@ -68,7 +68,7 @@ void merge_rec(int *arr, unsigned int left, unsigned int right)
 
 		merge_rec(arr, left, middle);
 		merge_rec(arr, middle + 1, right);
-	
+
 		printf("[left]: ");
 		print_array(arr + left, middle - left + 1);
 
