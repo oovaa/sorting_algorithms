@@ -1,5 +1,9 @@
 #include "sort.h"
 
+int lomuto_partition(int *array, size_t size, int left, int right);
+void lomuto_sort(int *array, size_t size, int left, int right);
+void quick_sort(int *array, size_t size);
+
 
 /**
  * lomuto_partition - Order a subset of an array of integers according to
