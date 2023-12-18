@@ -2,6 +2,20 @@
 #define parent(x) (((x) - 1) / 2)
 
 /**
+ * swap_ints - Swap two integers in an array.
+ * @a: The first integer to swap.
+ * @b: The second integer to swap.
+ */
+void swap_ints(int *a, int *b)
+{
+	int tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+/**
  * siftdown - siftdown implementation
  * @array: array to be sorted
  * @start: start of array
@@ -28,7 +42,7 @@ void siftdown(int *array, size_t start, size_t end, size_t size)
 		if (swapper == root)
 			return;
 
-		swap(&array[root], &array[swapper]);
+		swap_ints(&array[root], &array[swapper]);
 		print_array(array, size);
 		root = swapper;
 	}
@@ -57,7 +71,7 @@ void heap_sort(int *array, size_t size)
 	end = size - 1;
 	for (; end > 0; end--)
 	{
-		swap(&array[0], &array[end]);
+		swap_ints(&array[0], &array[end]);
 		print_array(array, size);
 		siftdown(array, 0, end - 1, size);
 	}
