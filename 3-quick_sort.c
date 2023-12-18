@@ -2,16 +2,17 @@
 
 
 /**
- * partition - Lomuto partition scheme
- * @array: Array to be sorted
- * @start: Starting index of the array or subarray
- * @end: Ending index of the array or subarray
- * @size: the size of the array
+ * lomuto_partition - Order a subset of an array of integers according to
+ *                    the lomuto partition scheme (last element as pivot).
+ * @array: The array of integers.
+ * @size: The size of the array.
+ * @start: The starting index of the subset to order.
+ * @end: The ending index of the subset to order.
  *
- * Return: Index of the pivot element after partitioning
+ * Return: The final partition index.
  */
 
-int partition(int *array, size_t start, size_t end, size_t size)
+int lomuto_partition(int *array, size_t start, size_t end, size_t size)
 {
 	int pivot = array[end];
 	size_t i = start - 1, j;
@@ -42,24 +43,24 @@ int partition(int *array, size_t start, size_t end, size_t size)
 
 
 /**
- * quick_rec - Recursively sorts a subarray using the Quick Sort algorithm
+ * lomuto_sort - Recursively sorts a subarray using the Quick Sort algorithm
  * @array: Array to be sorted
  * @start: Starting index of the array or subarray
  * @end: Ending index of the array or subarray
  * @size: the size of the array
  */
 
-void quick_rec(int *array, int start, int end, size_t size)
+void lomuto_sort(int *array, int start, int end, size_t size)
 {
 	int pivot;
 
 	if (start >= end)
 		return;
 
-	pivot = partition(array, start, end, size);
+	pivot = lomuto_partition(array, start, end, size);
 
-	quick_rec(array, start, pivot - 1, size);
-	quick_rec(array, pivot + 1, end, size);
+	lomuto_sort(array, start, pivot - 1, size);
+	lomuto_sort(array, pivot + 1, end, size);
 }
 
 /**
@@ -73,5 +74,5 @@ void quick_sort(int *array, size_t size)
 	if (array == NULL || size < 2)
 	return;
 
-	 quick_rec(array, 0, (int)size - 1, size);
+	 lomuto_sort(array, 0, (int)size - 1, size);
 }
