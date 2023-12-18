@@ -69,7 +69,7 @@ void lomuto_sort(int *array, int start, int end, size_t size)
 void quick_sort(int *array, size_t size)
 {
 	if (array == NULL || size < 2)
-	return;
+		return;
 
 	 lomuto_sort(array, 0, (int)size - 1, size);
 }
