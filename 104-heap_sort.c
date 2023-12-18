@@ -1,5 +1,5 @@
 #include "sort.h"
-#define parent(x) (((x) - 1) / 2)
+#define parent(x) (((x)-1) / 2)
 #define leftchild(x) (((x) * 2) + 1)
 #define rightchild(x) (((x) * 2) + 2)
 
@@ -58,7 +58,7 @@ void siftdown(int *array, size_t start, size_t end, size_t size)
  * heapify - puts heap in place
  * @array: array to be sorted
  * @size: size of array
- */
+
 
 void heapify(int *array, size_t size)
 {
@@ -69,7 +69,7 @@ void heapify(int *array, size_t size)
 	{
 		siftdown(array, start, size - 1, size);
 	}
-}
+}*/
 
 /**
  * heap_sort - sorts an array of integers in ascending orde
@@ -83,12 +83,20 @@ void heap_sort(int *array, size_t size)
 
 	if (!array || size < 2)
 		return;
-	heapify(array, size);
+
+	/*Built-in heapify*/
+	for (ssize_t start = parent(size - 1); start >= 0; start--)
+	{
+		siftdown(array, start, size - 1, size);
+	}
+
 	end = size - 1;
 	while (end > 0)
 	{
 		swap2(array, size, &array[0], &array[end]);
 		end--;
-		siftdown(array, 0, end, size);
+		siftdown(array, 0, end - 1, size);
+
+		end--;
 	}
 }
