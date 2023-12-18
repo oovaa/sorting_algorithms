@@ -46,7 +46,7 @@ void count_s(int *array, size_t size, int pos)
 		count[i] = count[i] + count[i - 1];
 	}
 
-	for (i = size - 1; i >= 0; i--)
+	for (i = size - 1; i != SIZE_MAX; i--)
 	{
 		arrayb[--count[(array[i] / pos) % 10]] = array[i];
 	}
@@ -67,12 +67,14 @@ void count_s(int *array, size_t size, int pos)
 
 void radix_sort(int *array, size_t size)
 {
+	int max;
+
 	if (!array || size < 2)
 		return;
 
-	int max = get_max(array, size);
+	max = get_max(array, size);
 
-	for (int pos = 1; max / pos > 0; pos * 10)
+	for (int pos = 1; max / pos > 0; pos *= 10)
 	{
 		count_s(array, size, pos);
 		print_array(array, size);
