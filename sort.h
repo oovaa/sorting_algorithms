@@ -52,6 +52,12 @@ void siftdown(int *array, size_t start, size_t end, size_t size);
 
 void heap_sort(int *array, size_t size);
 
+/*Radix*/
+
+int get_max(int *array, size_t size);
+
+void count_s(int *array, size_t size, int pos);
+
 void radix_sort(int *array, size_t size);
 
 #endif

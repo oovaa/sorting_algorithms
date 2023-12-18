@@ -1,23 +1,23 @@
 #include "sort.h"
 
 /**
- * getmax - return max val in array
+ * get_max - return max val in array
  * @array: arr to find max val
  * @size: size of arr
  * Return: max val in arr
  */
 
-int getmax(int *array, size_t size)
+int get_max(int *array, size_t size)
 {
-    int max = array[0];
-    size_t i;
+	int max = array[0];
+	size_t i;
 
-    for (i = 1; i < size; i++)
-    {
-        if (array[i] > max)
-            max = array[i];
-    }
-    return max;
+	for (i = 1; i < size; i++)
+	{
+		if (array[i] > max)
+			max = array[i];
+	}
+	return (max);
 }
 
 /**
@@ -26,36 +26,37 @@ int getmax(int *array, size_t size)
  * @size: size of arr
  * @pos: place value (1, 10)
  */
-void count_sort(int *array, size_t size, int pos)
+
+void count_s(int *array, size_t size, int pos)
 {
-    int count[10] = {0};
-    size_t i;
-    int *arrayb = malloc(sizeof(int) * size);
+	int count[10] = {0};
+	size_t i;
+	int *arrayb = malloc(sizeof(int) * size);
 
-    if (!arrayb)
-        return;
+	if (!arrayb)
+		return;
 
-    for (i = 0; i < size; i++)
-    {
-        count[(array[i] / pos) % 10]++;
-    }
+	for (i = 0; i < size; i++)
+	{
+		count[(array[i] / pos) % 10]++;
+	}
 
-    for (i = 1; i < 10; i++)
-    {
-        count[i] = count[i] + count[i - 1];
-    }
+	for (i = 1; i < 10; i++)
+	{
+		count[i] = count[i] + count[i - 1];
+	}
 
-    for (i = size - 1; i >= 0; i--)
-    {
-        arrayb[--count[(array[i] / pos) % 10]] = array[i];
-    }
+	for (i = size - 1; i >= 0; i--)
+	{
+		arrayb[--count[(array[i] / pos) % 10]] = array[i];
+	}
 
-    for (i = 0; i < size; i++)
-    {
-        array[i] = arrayb[i];
-    }
+	for (i = 0; i < size; i++)
+	{
+		array[i] = arrayb[i];
+	}
 
-    free(arrayb);
+	free(arrayb);
 }
 
 /**
@@ -66,14 +67,14 @@ void count_sort(int *array, size_t size, int pos)
 
 void radix_sort(int *array, size_t size)
 {
-    if (!array || size < 2)
-        return;
+	if (!array || size < 2)
+		return;
 
-    int max = getmax(array, size);
+	int max = get_max(array, size);
 
-    for (int pos = 1; max / pos > 0; pos * 10)
-    {
-        count_sort(array, size, pos);
-        print_array(array, size);
-    }
+	for (int pos = 1; max / pos > 0; pos * 10)
+	{
+		count_s(array, size, pos);
+		print_array(array, size);
+	}
 }
