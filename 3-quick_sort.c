@@ -43,7 +43,7 @@ int partition(int *array, size_t start, size_t end, size_t size)
 	}
 
 	i++;
-	if (i != end)
+	if (i != end && array[i] != array[end])
 	{
 		swap_ints(&array[i], &array[end]);
 		print_array(array, size);
