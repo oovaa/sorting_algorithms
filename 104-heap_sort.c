@@ -1,26 +1,5 @@
 #include "sort.h"
-#define parent(x) (((x)-1) / 2)
-#define leftchild(x) (((x) * 2) + 1)
-#define rightchild(x) (((x) * 2) + 2)
-
-/**
- * swap2 - swaps
- * @array: array to be sorted
- * @size: size of array
- * @a: value 1
- * @b: value 2
- */
-
-void swap2(int *array, size_t size, int *a, int *b)
-{
-	if (*a != *b)
-	{
-		*a = *a + *b;
-		*b = *a - *b;
-		*a = *a - *b;
-	}
-	print_array((const int *)array, size);
-}
+#define parent(x) (((x) - 1) / 2)
 
 /**
  * siftdown - siftdown implementation
@@ -32,44 +11,28 @@ void swap2(int *array, size_t size, int *a, int *b)
 
 void siftdown(int *array, size_t start, size_t end, size_t size)
 {
-	size_t root = start, swapper;
-	size_t left = leftchild(root);
-	size_t right = rightchild(root);
+	size_t root = start;
+	size_t child, swapper;
 
-	while (leftchild(root) <= end)
+	while (2 * root + 1 <= end)
 	{
+		child = 2 * root + 1;
 		swapper = root;
 
-		if (right <= end && array[swapper] < array[right])
-			swapper = right;
+		if (array[swapper] < array[child])
+			swapper = child;
 
-		if (left <= end && array[swapper] < array[left])
-			swapper = left;
+		if (child + 1 <= end && array[swapper] < array[child + 1])
+			swapper = child + 1;
 
 		if (swapper == root)
 			return;
 
-		swap2(array, size, &array[root], &array[swapper]);
+		swap(&array[root], &array[swapper]);
+		print_array(array, size);
 		root = swapper;
 	}
 }
-
-/**
- * heapify - puts heap in place
- * @array: array to be sorted
- * @size: size of array
-
-
-void heapify(int *array, size_t size)
-{
-	ssize_t start;
-
-	start = parent(size - 1);
-	for (; start >= 0; start--)
-	{
-		siftdown(array, start, size - 1, size);
-	}
-}*/
 
 /**
  * heap_sort - sorts an array of integers in ascending orde
@@ -80,23 +43,23 @@ void heapify(int *array, size_t size)
 void heap_sort(int *array, size_t size)
 {
 	size_t end;
+	ssize_t start;
 
 	if (!array || size < 2)
 		return;
 
-	/*Built-in heapify*/
-	for (ssize_t start = parent(size - 1); start >= 0; start--)
+	start = parent(size - 1);
+	for (; start >= 0; start--)
 	{
 		siftdown(array, start, size - 1, size);
 	}
 
 	end = size - 1;
-	while (end > 0)
+	for (; end > 0; end--)
 	{
-		swap2(array, size, &array[0], &array[end]);
-		end--;
+		swap(&array[0], &array[end]);
+		print_array(array, size);
 		siftdown(array, 0, end - 1, size);
-
-		end--;
 	}
 }
+
