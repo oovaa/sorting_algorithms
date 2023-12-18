@@ -19,3 +19,26 @@ void print_deck(const deck_node_t *deck)
         deck = deck->next;
     }
 }
+
+deck_node_t *init_deck(const card_t cards[52])
+{
+    deck_node_t *deck;
+    deck_node_t *node;
+    size_t i;
+
+    i = 52;
+    deck = NULL;
+    while (i--)
+    {
+        node = malloc(sizeof(*node));
+        if (!node)
+            return (NULL);
+        node->card = &cards[i];
+        node->next = deck;
+        node->prev = NULL;
+        if (deck)
+            deck->prev = node;
+        deck = node;
+    }
+    return (deck);
+}
