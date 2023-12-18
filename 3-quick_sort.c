@@ -11,34 +11,31 @@
  *
  * Return: The final partition index.
  */
-
-int lomuto_partition(int *array, size_t start, size_t end, size_t size)
+int lomuto_partition(int *array, int start, int end, size_t size)
 {
-	int pivot = array[end];
-	size_t i = start - 1, j;
+	int *pivot, above, below;
 
-	for (j = start; j < end; j++)
+	pivot = array + end;
+	for (above = below = start; below < end; below++)
 	{
-		if (array[j] < pivot)
+		if (array[below] < *pivot)
 		{
-			i++;
-			if (i != j)
+			if (above < below)
 			{
-				swap(&array[i], &array[j]);
+				swap(array + below, array + above);
 				print_array(array, size);
 			}
+			above++;
 		}
 	}
 
-	i++;
-	if (i != end)
+	if (array[above] > *pivot)
 	{
-		swap(&array[i], &array[end]);
+		swap(array + above, pivot);
 		print_array(array, size);
 	}
 
-	return (i);
-
+	return (above);
 }
 
 
