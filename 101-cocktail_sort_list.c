@@ -9,7 +9,7 @@
  * It updates the pointers of adjacent nodes accordingly.
  */
 
-void front_swap(listint_t *node)
+void front_swap(listint_t **list, listint_t *node)
 {
 	listint_t *tmp;
 
@@ -19,6 +19,9 @@ void front_swap(listint_t *node)
 
 	if (node->prev)
 		node->prev->next = tmp;
+
+	else
+		*list = tmp;
 
 	if (tmp->next)
 		tmp->next->prev = node;
