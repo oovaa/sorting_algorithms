@@ -1,7 +1,5 @@
 #include "sort.h"
 
-
-
 /**
  * front_swap - Swaps two nodes in a doubly linked list.
  * @list: the full list
@@ -64,7 +62,6 @@ void back_swap(listint_t **list, listint_t *node)
 		tmp->prev = node;
 }
 
-
 /**
  * cocktail_sort_list - Performs Cocktail Shaker Sort on a list.
  * @list: list to sort
@@ -73,7 +70,7 @@ void back_swap(listint_t **list, listint_t *node)
 void cocktail_sort_list(listint_t **list)
 {
 	int swapped = 1;
-	listint_t *head = *list;
+	listint_t *head;
 
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
@@ -81,6 +78,8 @@ void cocktail_sort_list(listint_t **list)
 	while (swapped)
 	{
 		swapped = 0;
+		head = *list;
+
 		while (head->next != NULL)
 		{
 			if (head->n > head->next->n)
@@ -92,6 +91,8 @@ void cocktail_sort_list(listint_t **list)
 			if (head->next)
 				head = head->next;
 		}
+
+		head = *list;
 
 		if (!swapped)
 			break;
@@ -107,6 +108,5 @@ void cocktail_sort_list(listint_t **list)
 			if (head->prev)
 				head = head->prev;
 		}
-	*list = head;
 	}
 }
