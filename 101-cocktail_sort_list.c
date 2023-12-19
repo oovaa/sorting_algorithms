@@ -89,7 +89,7 @@ void cocktail_sort_list(listint_t **list)
 		{
 			if (head->n > head->next->n)
 			{
-				front_swap(head);
+				front_swap(list, head);
 				swapped = 1;
 				print_list(*list);
 			}
@@ -101,9 +101,20 @@ void cocktail_sort_list(listint_t **list)
 			break;
 
 		head = *list;
+		while (head->next != NULL)
+		{
+			if (head->n > head->next->n)
+			{
+				front_swap(list, head);
+				swapped = 1;
+				print_list(*list);
+			}
+			if (head->next)
+				head = head->next;
+		}
 
 		head = head->prev;
-		while (head->prev != NULL)
+		while (head != NULL)
 		{
 			if (head->n < head->prev->n)
 			{
