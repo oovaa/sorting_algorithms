@@ -11,25 +11,23 @@
 
 void front_swap(listint_t **list, listint_t *node)
 {
-	listint_t *tmp;
+	listint_t *tmp = node->next;
 
-	tmp = node->next;
 	if (!tmp)
 		return;
 
 	if (node->prev)
 		node->prev->next = tmp;
-
 	else
 		*list = tmp;
 
 	if (tmp->next)
 		tmp->next->prev = node;
 
-	tmp->prev = node->prev;
 	node->next = tmp->next;
 	node->prev = tmp;
 	tmp->next = node;
+	tmp->prev = node->prev;
 
 	printf("Front swap: ");
 	print_list(*list);
@@ -46,28 +44,26 @@ void front_swap(listint_t **list, listint_t *node)
 
 void back_swap(listint_t **list, listint_t *node)
 {
-	listint_t *tmp;
+	listint_t *tmp = node->prev;
 
-	tmp = node->prev;
 	if (!tmp)
 		return;
 
 	if (node->next)
 		node->next->prev = tmp;
-
-	if (tmp->prev)
-		tmp->prev->next = node;
 	else
 		*list = node;
 
-	tmp->next = node->next;
+	if (tmp->prev)
+		tmp->prev->next = node;
+
 	node->prev = tmp->prev;
 	node->next = tmp;
-
-	if (tmp->next)
-		tmp->next->prev = node;
-
 	tmp->prev = node;
+	tmp->next = node->next;
+
+	if (node->next)
+		node->next->prev = node;
 
 	printf("Back swap: ");
 	print_list(*list);
