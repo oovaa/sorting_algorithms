@@ -95,6 +95,8 @@ void cocktail_sort_list(listint_t **list)
 		if (!swapped)
 			break;
 
+		head = *list;
+
 		head = head->prev;
 		while (head->prev != NULL)
 		{
