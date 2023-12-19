@@ -58,8 +58,10 @@ void back_swap(listint_t **list, listint_t *node)
 	node->prev = tmp->prev;
 	node->next = tmp;
 
-	if (tmp->prev)
-		tmp->prev = node;
+	if (tmp->next)
+		tmp->next->prev = node;
+
+	tmp->prev = node;
 }
 
 /**
