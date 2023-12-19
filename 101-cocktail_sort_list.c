@@ -30,6 +30,9 @@ void front_swap(listint_t **list, listint_t *node)
 	node->next = tmp->next;
 	node->prev = tmp;
 	tmp->next = node;
+
+	printf("Front swap: ");
+	print_list(*list);
 }
 
 /**
@@ -65,6 +68,9 @@ void back_swap(listint_t **list, listint_t *node)
 		tmp->next->prev = node;
 
 	tmp->prev = node;
+
+	printf("Back swap: ");
+	print_list(*list);
 }
 
 /**
@@ -125,5 +131,8 @@ void cocktail_sort_list(listint_t **list)
 			if (head->prev)
 				head = head->prev;
 		}
+
+		printf("After pass: ");
+		print_list(*list);
 	}
 }
